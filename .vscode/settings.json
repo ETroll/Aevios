@@ -1,0 +1,28 @@
+{
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/bin": true,
+        "**/CVS": true,
+        "**/obj": true,
+        "**/toolchain": true,
+        "build": true,
+        "tools": true
+    },
+    "files.associations": {
+        "efilib.h": "c",
+        "efi.h": "c",
+        "efibind.h": "c"
+    },
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\sysnative\\bash.exe",
+    "terminal.integrated.copyOnSelection": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.trimAutoWhitespace": true,
+    "editor.useTabStops": true,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "files.eol": "\n"
+}

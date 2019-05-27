@@ -1,0 +1,63 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Decompiled assembly
+*.list
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.img
+*.bin
+
+#Fucking eclipse!
+.cproject
+.project
+.settings/*
+
+#MacOSX specific crap
+*.DS_Store
+
+#project specific folders
+[Oo]bject/*
+[Bb]uild/*
+[Ss]dcard/*
+[Oo]bj/*
+[Bb]in/*
+.vscode/ipch
+
+#excludes from rule
+![Tt]ools/**/*
+
+# QEMU Traces
+Trace-*
+bochsout.txt
+bx_enh_dbg.ini
+kernel.log
+
+#Toolchain
+[Tt]oolchain/bochs/*
+[Tt]oolchain/gcc/*
