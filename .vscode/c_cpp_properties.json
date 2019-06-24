@@ -6,11 +6,17 @@
                 "${workspaceFolder}/**",
                 "/usr/include/efi/**"
             ],
+            "browse": {
+                "path": [
+                    "/usr/include/efi/"
+                ]
+            },
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "__VSCODE"
+                "__VSCODE",
+                "_MSC_EXTENSIONS"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c99",

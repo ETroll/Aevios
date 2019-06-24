@@ -17,14 +17,14 @@ all: $(BOOTLOADER) #$(KERNEL)
 rebuild: clean all
 
 qemu:
-	qemu-system-x86_64.exe -nographic -cpu qemu64 \
+	qemu-system-x86_64 -nographic -cpu qemu64 \
 		-drive if=pflash,format=raw,unit=0,file=$(OMVF)/OVMF_CODE-pure-efi.fd,readonly=on \
 		-drive if=pflash,format=raw,unit=1,file=$(OMVF)/OVMF_VARS-pure-efi.fd \
 		-usb -drive if=none,id=stick,format=raw,file=$(IMAGE) -device nec-usb-xhci,id=xhci \
 		-device usb-storage,bus=xhci.0,drive=stick -net none
 
 debug:
-	qemu-system-x86_64.exe -nographic -cpu qemu64 \
+	qemu-system-x86_64 -nographic -cpu qemu64 \
 		-drive if=pflash,format=raw,unit=0,file=$(OMVF)/OVMF_CODE-pure-efi.fd,readonly=on \
 		-drive if=pflash,format=raw,unit=1,file=$(OMVF)/OVMF_VARS-pure-efi.fd \
 		-usb -drive if=none,id=stick,format=raw,file=$(IMAGE) -device nec-usb-xhci,id=xhci \

@@ -8,13 +8,18 @@
         "**/CVS": true,
         "**/obj": true,
         "**/toolchain": true,
+        ".vscode/ipch": true,
         "build": true,
         "tools": true
     },
     "files.associations": {
         "efilib.h": "c",
         "efi.h": "c",
-        "efibind.h": "c"
+        "efibind.h": "c",
+        "efifs.h": "c",
+        "efiapi.h": "c",
+        "efinet.h": "c",
+        "efipxebc.h": "c"
     },
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\sysnative\\bash.exe",
     "terminal.integrated.copyOnSelection": true,
