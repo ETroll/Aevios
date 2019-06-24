@@ -47,6 +47,10 @@
 [Ss]dcard/*
 [Oo]bj/*
 [Bb]in/*
+**/[Bb]in/*
+**/[Oo]bject/*
+**/[Bb]uild/*
+**/[Oo]bj/*
 .vscode/ipch
 
 #excludes from rule
@@ -58,6 +62,3 @@ bochsout.txt
 bx_enh_dbg.ini
 kernel.log
 
-#Toolchain
-[Tt]oolchain/bochs/*
-[Tt]oolchain/gcc/*
