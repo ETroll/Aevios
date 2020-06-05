@@ -21,7 +21,7 @@
         "efinet.h": "c",
         "efipxebc.h": "c"
     },
-    "terminal.integrated.shell.windows": "C:\\WINDOWS\\sysnative\\bash.exe",
+    // "terminal.integrated.shell.windows": "C:\\WINDOWS\\sysnative\\bash.exe",
     "terminal.integrated.copyOnSelection": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
