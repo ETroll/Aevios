@@ -22,7 +22,7 @@ qemu:
 		-drive if=pflash,format=raw,unit=1,file=$(OMVF)/OVMF_VARS-pure-efi.fd \
 		-usb -drive if=none,id=stick,format=raw,file=$(IMAGE) -device nec-usb-xhci,id=xhci \
 		-device usb-storage,bus=xhci.0,drive=stick -net none 
-		# -nographic
+		#-nographic
 
 debug:
 	qemu-system-x86_64 -nographic -cpu qemu64 \

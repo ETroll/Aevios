@@ -38,3 +38,4 @@ RUN apt-get update \
 
 ENV DEBIAN_FRONTEND=dialog
 ENV SHELL /bin/bash
+ENV DISPLAY host.docker.internal:0.0

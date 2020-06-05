@@ -1,12 +1,13 @@
 {
     "name": "ÆviOS",
-    "image": "cr.trollcode.no/aeviosdev",
+    "image": "cr.trollcode.no/aeviosdev:4.0",
     "extensions": [
 		"ms-vscode.cpptools",
 		"vadimcn.vscode-lldb",
 		"webfreak.debug"
 	],
 	"runArgs": [
+		"--privileged"
 		"--cap-add=SYS_PTRACE",
 		"--security-opt",
 		"seccomp=unconfined"
