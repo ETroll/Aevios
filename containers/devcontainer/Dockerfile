@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
 
+#TræviOS Image
+
 LABEL maintainer="Karl Syvert Løland <karl@trollcode.no>"
 
 ENV DEBIAN_FRONTEND=noninteractive

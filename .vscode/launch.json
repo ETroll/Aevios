@@ -9,31 +9,11 @@
             "target": ":1234",
             "remote": true,
             "cwd": "${workspaceRoot}",
-            "valuesFormatting": "parseText"
+            "valuesFormatting": "parseText",
+            "printCalls": true,
+            "showDevDebugOutput": true,
+            
         },
-
-        // {
-        //     "name": "Debug Bootloader",
-        //     "type": "cppdbg",
-        //     "request": "launch",
-        //     "miDebuggerServerAddress": "127.0.0.1:1234",
-        //     // "program": "${workspaceFolder}/src/bootloader/uefi/bin/BOOTX64.EFI",
-        //     "program": "${workspaceFolder}/src/bootloader/uefi/bin/BOOTX64.EFI",
-        //     // "preLaunchTask": "buildDebugAndDeploy",
-        //     "pipeTransport": {
-        //         "debuggerPath": "/usr/bin/lldb",
-        //         "pipeProgram": "${env:windir}\\system32\\bash.exe",
-        //         "pipeArgs": ["-c"],
-        //         "pipeCwd": ""
-        //     },
-        //     "setupCommands": [
-        //         {
-        //             "description": "Enable pretty-printing for gdb",
-        //             "text": "-enable-pretty-printing",
-        //             "ignoreFailures": true
-        //         }
-        //     ]
-        // },
         {
             "name": "Debug Bootloader",
             "type": "lldb",
@@ -45,7 +25,8 @@
                 // "platform select remote-gdb-server",
                 "process connect --plugin gdb-remote connect://127.0.0.1:1234"
             ],
-            // "preLaunchTask": "Build Debug"
-        }
+            //"preLaunchTask": "Build Debug"
+        },
+        
     ]
 }

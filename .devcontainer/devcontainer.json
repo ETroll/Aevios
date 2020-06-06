@@ -7,7 +7,7 @@
 		"webfreak.debug"
 	],
 	"runArgs": [
-		"--privileged"
+		"--privileged",
 		"--cap-add=SYS_PTRACE",
 		"--security-opt",
 		"seccomp=unconfined"

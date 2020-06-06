@@ -1,7 +1,7 @@
 
 #COMPILER = x86_64-w64-mingw32-gcc
 COMPILER = clang
-LINKER = clang
+LINKER = clang #lld-link
 
 # OUTPUT
 DIR_BUILD = bin/
@@ -9,8 +9,8 @@ DIR_OBJECT = obj/
 TARGET = BOOTX64.EFI #defined name standard in EFI
 BUILDFOLDERS = . lib
 
-LDFLAGS = -target x86_64-pc-win32-coff -nostdlib -Wl,-entry:efi_main -Wl,-subsystem:efi_application -fuse-ld=lld-link -Wno-msvc-not-found 
-CFLAGS = -target x86_64-pc-win32-coff -glldb -fno-stack-protector -fshort-wchar -mno-red-zone -Wall -Wno-incompatible-library-redeclaration -DHAVE_USE_MS_ABI -D__GNUC__
+LDFLAGS = -target x86_64-win32-coff -g -nostdlib -dll -Wl,-entry:efi_main -Wl,-subsystem:efi_application -fuse-ld=lld-link -Wno-msvc-not-found
+CFLAGS = -target x86_64-win32-coff -g -fno-stack-protector -fshort-wchar -mno-red-zone -Wall -Wno-incompatible-library-redeclaration -DHAVE_USE_MS_ABI -D__GNUC__
 
 EFIINC = /usr/include/efi
 EFIINCS = -I$(EFIINC) -I$(EFIINC)/x86_64 -I$(EFIINC)/protocol

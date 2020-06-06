@@ -11,8 +11,25 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
  
     /* Say hi */
     Status = ST->ConOut->OutputString(ST->ConOut, L"Hello World\n\r");
-    if (EFI_ERROR(Status))
+    if (EFI_ERROR(Status)) 
+    {
         return Status;
+    }
+
+    // EFI_LOADED_IMAGE *loaded_image = NULL;
+    // EFI_STATUS status;
+ 
+    // InitializeLib(ImageHandle, SystemTable);
+    // status = uefi_call_wrapper(SystemTable->BootServices->HandleProtocol,
+    //                            3,
+    //                           ImageHandle,
+    //                           &LoadedImageProtocol,
+    //                           (void **)&loaded_image);
+    // if (EFI_ERROR(status)) {
+    //     Print(L"handleprotocol: %r\n", status);
+    // }
+ 
+    // Print(L"Image base: 0x%lx\n", loaded_image->ImageBase);
  
     /* Now wait for a keystroke before continuing, otherwise your
        message will flash off the screen before you see it.
