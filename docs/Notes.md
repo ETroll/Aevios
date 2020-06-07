@@ -21,4 +21,7 @@ https://uefi.org/sites/default/files/resources/ACPI_6_3_May16.pdf
 cat efi-debug.log | grep Loading | grep -i BOOTX64
 > Loading driver at 0x0000693C000 EntryPoint=0x0000693F000 BOOTX64.efi
 
-0x0000693F000
+add-symbol-file ${workspaceFolder}/src/bootloader/uefi/bin/BOOTX64.EFI 0x0000693F000
+
+
+https://github.com/vathpela/gnu-efi/

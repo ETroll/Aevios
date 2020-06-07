@@ -1,5 +1,7 @@
-#include "efi.h"
+#include "efi/efi.h"
 #include "efi/protocol/efi-lip.h"
+
+#include "util/util.h"
 
 #define FALSE 0
 #define EFI_ERROR(a) (((INT64) a) < 0)
@@ -11,6 +13,8 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
  
     /* Store the system table for future use in other functions */
     EFI_SYSTEM_TABLE *ST = SystemTable;
+
+    ST->ConOut->ClearScreen(ST->ConOut);
  
     /* Say hi */
     Status = ST->ConOut->OutputString(ST->ConOut, L"Hello World3\n\r");
@@ -34,21 +38,11 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
     {
         ST->ConOut->OutputString(ST->ConOut, L"Loaded image base\n\r");
     }
-    // EFI_LOADED_IMAGE *loaded_image = NULL;
-    // EFI_STATUS status;
- 
-    // InitializeLib(ImageHandle, SystemTable);
-    // status = uefi_call_wrapper(SystemTable->BootServices->HandleProtocol,
-    //                            3,
-    //                           ImageHandle,
-    //                           &LoadedImageProtocol,
-    //                           (void **)&loaded_image);
-    // if (EFI_ERROR(status)) {
-    //     Print(L"handleprotocol: %r\n", status);
-    // }
- 
-    // Print(L"Image base: 0x%lx\n", loaded_image->ImageBase);
- 
+    // efiprint(ST->ConOut, "Test test\n\r");
+
+    Print(ST->ConOut, L"Hello World in unicode. Image base at %x\n\r", loaded_image->ImageBase);
+
+
     /* Now wait for a keystroke before continuing, otherwise your
        message will flash off the screen before you see it.
  

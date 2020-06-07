@@ -9,6 +9,9 @@
 
 #include <stdint.h>
 
+#ifndef CONST
+   #define CONST const
+#endif
 
 #define EFI_FALSE                   0
 #define EFI_TRUE                    1
@@ -65,6 +68,7 @@
 
 typedef uint8_t     BOOLEAN;
 typedef uint16_t    CHAR16;
+typedef uint8_t     CHAR8;
 typedef void        *EFI_EVENT;
 typedef void        *EFI_HANDLE;
 typedef uint64_t    EFI_LBA;
@@ -84,6 +88,7 @@ typedef uint32_t    UINT32;
 typedef uint64_t    UINT64;
 typedef uint64_t    UINTN;
 typedef void        VOID;
+typedef unsigned short WCHAR;
 
 typedef struct EFI_GUID {
     UINT32  Data1;
