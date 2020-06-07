@@ -13,3 +13,6 @@ tar xvjf gnu-efi-3.0.12.tar.bz2
 
 
 https://dvdhrm.github.io/2019/01/31/goodbye-gnuefi/
+
+
+https://uefi.org/sites/default/files/resources/ACPI_6_3_May16.pdf

@@ -12,7 +12,7 @@
             "valuesFormatting": "parseText",
             "printCalls": true,
             "showDevDebugOutput": true,
-            
+            // "preLaunchTask": "Build Debug"
         },
         {
             "name": "Debug Bootloader",
@@ -25,7 +25,7 @@
                 // "platform select remote-gdb-server",
                 "process connect --plugin gdb-remote connect://127.0.0.1:1234"
             ],
-            //"preLaunchTask": "Build Debug"
+            "preLaunchTask": "Build Debug"
         },
         
     ]

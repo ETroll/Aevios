@@ -13,7 +13,8 @@
             "label": "Build Debug",
             "type": "shell",
             "command": "make debug",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "isBackground": true
         }
     ]
 }
