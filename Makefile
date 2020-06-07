@@ -51,7 +51,7 @@ clean:
 	rm -rf $(DESTINATION)
 	$(MAKE) -C $(SOURCE)/$(BOOTLOADER) clean
 	$(MAKE) -C $(SOURCE)/$(KERNEL) clean
-	$(MAKE) -C $(SOURCE)/$(USERLAND) clean
+	#$(MAKE) -C $(SOURCE)/$(USERLAND) clean
 	
 
 $(SUBCLEAN): %.clean:

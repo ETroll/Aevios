@@ -12,7 +12,7 @@ BUILDFOLDERS = . lib
 LDFLAGS = -target x86_64-win32-coff -g -nostdlib -dll -Wl,-entry:efi_main -Wl,-subsystem:efi_application -fuse-ld=lld-link -Wno-msvc-not-found
 CFLAGS = -target x86_64-win32-coff -g -fno-stack-protector -fshort-wchar -mno-red-zone -Wall -Wno-incompatible-library-redeclaration -DHAVE_USE_MS_ABI -D__GNUC__
 
-EFIINC = /usr/include/efi
+EFIINC = efi
 EFIINCS = -I$(EFIINC) -I$(EFIINC)/x86_64 -I$(EFIINC)/protocol
 
 

@@ -3,14 +3,8 @@
         {
             "name": "ÆviOS Configuration",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/usr/include/efi/**"
+                "${workspaceFolder}/**"
             ],
-            "browse": {
-                "path": [
-                    "/usr/include/efi/"
-                ]
-            },
             "defines": [
                 "_DEBUG",
                 "UNICODE",

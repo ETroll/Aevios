@@ -12,9 +12,9 @@ RUN apt-get update \
     && apt-get -y install git procps lsb-release \
     #
     # Install Clang tools
-    && apt-get -y install clang build-essential gdb gnu-efi lld mtools lldb make\
+    && apt-get -y install clang gcc build-essential gdb lld mtools lldb make\
     #Install Tools to build qemu
-    && apt-get -y install wget gcc g++ zlib1g-dev pkg-config libglib2.0-dev \
+    && apt-get -y install wget g++ zlib1g-dev pkg-config libglib2.0-dev \
         binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev \
         libpython-dev libgtk-3-dev libsdl2-dev \
     # Download QEMU
@@ -29,7 +29,16 @@ RUN apt-get update \
     # Clean up
     && cd .. \
     && rm -rf qemu-4.0.0 \
-    && apt-get remove -y gcc g++ zlib1g-dev pkg-config libglib2.0-dev \
+    # Install GNU-EFI
+    # && wget https://iweb.dl.sourceforge.net/project/gnu-efi/gnu-efi-3.0.12.tar.bz2 \
+    # && tar xvjf gnu-efi-3.0.12.tar.bz2 \
+    # && cd gnu-efi-3.0.12 \
+    # && make \
+    # && make install \
+    # && cd .. \
+    # && rm -rf gnu-efi-3.0.12 \
+    # Remove old depencies
+    && apt-get remove -y zlib1g-dev pkg-config libglib2.0-dev \
         binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev \
         libpython-dev libgtk-3-dev libsdl2-dev \
     # Add runtime versions of libs
