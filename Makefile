@@ -21,8 +21,8 @@ qemu:
 		-drive if=pflash,format=raw,unit=0,file=$(OMVF)/OVMF_CODE-pure-efi.fd,readonly=on \
 		-drive if=pflash,format=raw,unit=1,file=$(OMVF)/OVMF_VARS-pure-efi.fd \
 		-usb -drive if=none,id=stick,format=raw,file=$(IMAGE) -device nec-usb-xhci,id=xhci \
-		-device usb-storage,bus=xhci.0,drive=stick -net none \
-		-debugcon file:efi-debug.log -global isa-debugcon.iobase=0x402 
+		-device usb-storage,bus=xhci.0,drive=stick -net none 
+		#-debugcon file:efi-debug.log -global isa-debugcon.iobase=0x402 
 		#-serial stdio \
 		#-nographic
 
@@ -31,8 +31,8 @@ debug: $(BOOTLOADER)
 		-drive if=pflash,format=raw,unit=0,file=$(OMVF)/OVMF_CODE-pure-efi.fd,readonly=on \
 		-drive if=pflash,format=raw,unit=1,file=$(OMVF)/OVMF_VARS-pure-efi.fd \
 		-usb -drive if=none,id=stick,format=raw,file=$(IMAGE) -device nec-usb-xhci,id=xhci \
-		-device usb-storage,bus=xhci.0,drive=stick -net none -s -S \
-		-debugcon file:efi-debug.log -global isa-debugcon.iobase=0x402 
+		-device usb-storage,bus=xhci.0,drive=stick -net none -s -S 
+		#-debugcon file:efi-debug.log -global isa-debugcon.iobase=0x402 
 		#-serial stdio \
 		#-nographic
 

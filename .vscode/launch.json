@@ -12,6 +12,9 @@
             "valuesFormatting": "parseText",
             "printCalls": true,
             "showDevDebugOutput": true,
+            "autorun": [
+                "add-symbol-file ${workspaceFolder}/src/bootloader/uefi/bin/BOOTX64.EFI 0x0000693F000"
+            ]
             // "preLaunchTask": "Build Debug"
         },
         {
