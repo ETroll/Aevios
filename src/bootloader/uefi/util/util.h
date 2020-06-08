@@ -17,6 +17,8 @@ typedef __builtin_va_list va_list;
 #define va_arg(v,l)	__builtin_va_arg(v,l)
 #define va_copy(d,s)	__builtin_va_copy(d,s)
 
+#define EFI_ERROR(a) (((INT64) a) < 0)
+
 #ifndef NULL
 #define NULL	0
 #endif

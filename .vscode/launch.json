@@ -4,7 +4,7 @@
         {
             "type": "gdb",
             "request": "attach",
-            "name": "Attach to gdbserver",
+            "name": "Debug Bootloader",
             "executable": "${workspaceFolder}/src/bootloader/uefi/bin/BOOTX64.EFI",
             "target": ":1234",
             "remote": true,
@@ -16,20 +16,6 @@
                 "add-symbol-file ${workspaceFolder}/src/bootloader/uefi/bin/BOOTX64.EFI 0x0000693F000"
             ]
             // "preLaunchTask": "Build Debug"
-        },
-        {
-            "name": "Debug Bootloader",
-            "type": "lldb",
-            "request": "launch",
-            "program": "${workspaceFolder}/src/bootloader/uefi/bin/BOOTX64.EFI",
-            "cwd": "${workspaceFolder}",
-            "stopOnEntry": true,
-            "initCommands": [
-                // "platform select remote-gdb-server",
-                "process connect --plugin gdb-remote connect://127.0.0.1:1234"
-            ],
-            "preLaunchTask": "Build Debug"
-        },
-        
+        }
     ]
 }

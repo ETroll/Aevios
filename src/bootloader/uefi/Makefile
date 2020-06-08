@@ -15,6 +15,7 @@ CFLAGS = -target x86_64-win32-coff -g -fno-stack-protector -fshort-wchar -mno-re
 EFIINC = efi
 EFIINCS = -I$(EFIINC) -I$(EFIINC)/x86_64 -I$(EFIINC)/protocol
 
+.PHONY: $(TARGET) $(OBJECTS)
 
 SRC := $(foreach sdir, $(BUILDFOLDERS), $(wildcard $(sdir)/*.c))
 OBJECTS := $(patsubst %.c, $(DIR_OBJECT)%.o, $(SRC))
@@ -27,7 +28,6 @@ $(TARGET): $(DIR_BUILD) $(OBJECTS)
 $(OBJECTS): $(DIR_OBJECT)
 	@mkdir -p $(@D)
 	$(COMPILER) $(EFIINCS) $(CFLAGS) -c $(patsubst $(DIR_OBJECT)%.o, %.c, $@) -o $(patsubst .$(@D)%.o, $(DIR_OBJECT)%.o, $@)
-
 
 $(DIR_BUILD):
 	mkdir $@

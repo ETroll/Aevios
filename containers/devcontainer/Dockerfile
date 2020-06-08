@@ -12,7 +12,7 @@ RUN apt-get update \
     && apt-get -y install git procps lsb-release \
     #
     # Install Clang tools
-    && apt-get -y install clang gcc build-essential gdb lld mtools lldb make\
+    && apt-get -y install clang gcc build-essential gdb lld mtools dosfstools lldb make\
     #Install Tools to build qemu
     && apt-get -y install wget g++ zlib1g-dev pkg-config libglib2.0-dev \
         binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev \

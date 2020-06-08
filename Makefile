@@ -36,12 +36,14 @@ debug: $(BOOTLOADER)
 		#-serial stdio \
 		#-nographic
 
-
+#https://support.microsoft.com/en-us/help/140365/default-cluster-size-for-ntfs-fat-and-exfat
 $(IMAGE): $(DESTINATION)
-	dd if=/dev/zero of=$@ bs=1k count=1440
-	mformat -i $@ -f 1440 ::
+	dd if=/dev/zero of=$@ bs=32M count=2
+	mkfs.vfat -F 32 -S 512 -s 1 $@
+	# mformat -i $@ -F ::
 	mmd -i $@ ::/EFI
 	mmd -i $@ ::/EFI/BOOT
+	mcopy -i $@ ./toolchain/tros.elf :: 
 
 $(KERNEL):
 	$(MAKE) -C ./$(SOURCE)/$@
