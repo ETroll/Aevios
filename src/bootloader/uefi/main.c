@@ -9,11 +9,14 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
     EFI_STATUS Status;
     EFI_INPUT_KEY Key;
+    CHAR16 tempBuffer[100];
  
     /* Store the system table for future use in other functions */
     EFI_SYSTEM_TABLE *ST = SystemTable;
 
     ST->ConOut->ClearScreen(ST->ConOut);
+
+    
  
     /* Say hi */
     Status = ST->ConOut->OutputString(ST->ConOut, L"Hello World3\n\r");
@@ -39,30 +42,36 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
     }
     // efiprint(ST->ConOut, "Test test\n\r");
 
-    Print(ST->ConOut, L"Image base at %H0x%x%N\n\r", loaded_image->ImageBase);
+    Print(ST->ConOut, L"Image base at %H0x%lx%N\n\r", loaded_image->ImageBase);
 
-    UINTN MemMapSize, MemMapKey, MemMapDescriptorSize = 0;
+    UINTN MemMapSize = 0;
+    UINTN MemMapKey, MemMapDescriptorSize = NULL;
     UINT32 MemMapDescriptorVersion;
     EFI_MEMORY_DESCRIPTOR *MemMap = NULL;
 
     EFI_STATUS memstatus = ST->BootServices->GetMemoryMap(&MemMapSize, MemMap, &MemMapKey, &MemMapDescriptorSize, &MemMapDescriptorVersion);
+
+    StatusToString(tempBuffer, memstatus);
+
+    Print(ST->ConOut,L"memstatus: %lx - %s\n\r", memstatus, tempBuffer);
     if(memstatus == EFI_BUFFER_TOO_SMALL)
     {
-        Print(ST->ConOut, L"MemMap buffer was too small. MemMapSize = %d, MemMapDescriptorSize = %d\n\r", MemMapSize, MemMapDescriptorSize);
+        Print(ST->ConOut, L"MemMap buffer was too small. MemMapSize = %ld, MemMapDescriptorSize = %ld\n\r", MemMapSize, MemMapDescriptorSize);
         MemMapSize += MemMapDescriptorSize;
         memstatus = ST->BootServices->AllocatePool(EfiLoaderData, MemMapSize, (void **)&MemMap); // Allocate pool for MemMap (it should always be resident in memory)
         if(EFI_ERROR(memstatus))
         {
-            Print(ST->ConOut, L"MemMap AllocatePool error. 0x%llx\n\r", memstatus);
+            Print(ST->ConOut, L"MemMap AllocatePool error. 0x%lx\n\r", memstatus);
             return memstatus;
         }
         memstatus = ST->BootServices->GetMemoryMap(&MemMapSize, MemMap, &MemMapKey, &MemMapDescriptorSize, &MemMapDescriptorVersion);
     }
-    Print(ST->ConOut, L"MemMap - MemMapSize = %d, MemMapDescriptorSize = %d\n\r", MemMapSize, MemMapDescriptorSize);
+
+    Print(ST->ConOut, L"MemMap - MemMapSize = %ld, MemMapDescriptorSize = %ld\n\r", MemMapSize, MemMapDescriptorSize);
     Print(ST->ConOut,L"Num: Type, PhysicalStart, VirtualStart, NumberOfPages, Attribute\n\r");
-    // for(int i = 0; i<=(MemMapSize/MemMapDescriptorSize); i++) {
-    for(int i = 0; i<=20; i++) {
-        Print(ST->ConOut, L"%d: %u 0x%x 0x%x %u %u\n\r", i, MemMap[i].Type, MemMap[i].PhysicalStart, MemMap[i].VirtualStart, MemMap[i].NumberOfPages, MemMap[i].Attribute);
+    for(int i = 0; i<=(MemMapSize/MemMapDescriptorSize); i++) {
+    //for(int i = 0; i<=10; i++) {
+        Print(ST->ConOut, L"%d: %lx 0x%lx 0x%lx %lu %lu\n\r", i, MemMap[i].Type, MemMap[i].PhysicalStart, MemMap[i].VirtualStart, MemMap[i].NumberOfPages, MemMap[i].Attribute);
     }
 
 
