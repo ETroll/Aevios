@@ -13,13 +13,15 @@
         "tools": true
     },
     "files.associations": {
-        "efilib.h": "c",
-        "efi.h": "c",
-        "efibind.h": "c",
-        "efifs.h": "c",
-        "efiapi.h": "c",
-        "efinet.h": "c",
-        "efipxebc.h": "c"
+        "*.h": "cpp",
+        "*.c": "c",
+    },
+    "[c]": {
+        "editor.wordBasedSuggestions": false,
+        "editor.suggest.insertMode": "replace",
+        "editor.codeLens": true,
+        "editor.showUnused": true,
+        "breadcrumbs.showFunctions": true
     },
     // "terminal.integrated.shell.windows": "C:\\WINDOWS\\sysnative\\bash.exe",
     "terminal.integrated.copyOnSelection": true,

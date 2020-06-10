@@ -140,7 +140,7 @@ Arguments:
 Returns:
     String length returned in buffer
 --*/
-UINTN SPrint (CHAR16 *Str, UINTN StrSize, const CHAR16 *fmt, ...)
+UINTN efi_util_sprintf (CHAR16 *Str, UINTN StrSize, const CHAR16 *fmt, ...)
 {
     va_list args;
 
@@ -420,7 +420,7 @@ void TimeToString (CHAR16 *Buffer, EFI_TIME *Time)
     Year = Time->Year % 100;
 
     // bugbug: for now just print it any old way
-    SPrint (Buffer, 0, L"%02d/%02d/%02d  %02d:%02d%c",
+    efi_util_sprintf (Buffer, 0, L"%02d/%02d/%02d  %02d:%02d%c",
         Time->Month,
         Time->Day,
         Year,
@@ -642,7 +642,7 @@ UINTN _Print (PRINT_STATE *ps)
                 break;
 
             case 'r':
-                StatusToString (Item.Scratch, va_arg(ps->args, EFI_STATUS));
+                efi_util_statusToString (Item.Scratch, va_arg(ps->args, EFI_STATUS));
                 Item.Item.un.pw = Item.Scratch;
                 break;
 
@@ -736,7 +736,7 @@ UINTN _IPrint (UINTN Column, UINTN Row, EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *Out, CO
 }
 
 
-UINTN Print (struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *TOP, CONST CHAR16 *fmt, ...)
+UINTN efi_util_printf (struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *TOP, CONST CHAR16 *fmt, ...)
 {
     va_list     args;
     UINTN       back;

@@ -46,7 +46,7 @@ struct {
 } ;
 
 
-void StatusToString (CHAR16 *Buffer, EFI_STATUS Status)
+void efi_util_statusToString (CHAR16 *Buffer, EFI_STATUS Status)
 {
     UINTN Index;
 
@@ -56,5 +56,5 @@ void StatusToString (CHAR16 *Buffer, EFI_STATUS Status)
             return;
         }
     }
-    SPrint (Buffer, 0, L"%X", Status);
+    efi_util_sprintf (Buffer, 0, L"%X", Status);
 }

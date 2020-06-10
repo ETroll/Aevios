@@ -58,9 +58,11 @@ UINTN xtoi (const CHAR16 *str);
 UINTN Atoi (const CHAR16 *str);
 BOOLEAN MetaMatch (CHAR16 *String, CHAR16 *Pattern);
 
-void StatusToString (CHAR16 *Buffer, EFI_STATUS Status);
+void efi_util_statusToString (CHAR16 *Buffer, EFI_STATUS Status);
 
-UINTN Print (struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *TOP, CONST CHAR16 *fmt, ...);
-UINTN SPrint (CHAR16 *Str, UINTN StrSize, const CHAR16 *fmt, ...);
+UINTN efi_util_printf (struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *TOP, CONST CHAR16 *fmt, ...);
+UINTN efi_util_sprintf (CHAR16 *Str, UINTN StrSize, const CHAR16 *fmt, ...);
+
+EFI_STATUS efi_util_readKey(EFI_SIMPLE_TEXT_INPUT_PROTOCOL *console, EFI_INPUT_KEY *key);
 
 #endif
