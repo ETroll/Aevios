@@ -4,6 +4,7 @@
             "name": "ÆviOS Configuration",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/src/bootloader/uefi/include/**",
                 "${workspaceFolder}/src/bootloader/uefi/efi/**",
                 "${workspaceFolder}/src/bootloader/uefi/efi/protocol/**"
             ],

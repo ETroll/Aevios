@@ -10,6 +10,10 @@
 // #define va_end(ap) ((void) (ap = 0))
 // #define va_arg(ap) (*++(ap))
 
+// static int32_t _fltused = 0;
+
+
+
 typedef __builtin_va_list va_list;
 
 #define va_start(v,l)	__builtin_va_start(v,l)

@@ -1,5 +1,12 @@
 #include "util.h"
 
+// C Compiler in freestanding mode requires the existence of the symbols memset, memcpy, memmove and memcmp. 
+// We *must* supply these functions yourself as described in the C standard.
+void* memset(void* ptr, UINT8 value, UINTN len ) {
+    SetMem(ptr, len, value);
+    return ptr;
+}
+
 void ZeroMem (void *Buffer, UINTN Size)
 {
     INT8 *pt;
@@ -19,6 +26,7 @@ void SetMem (void *Buffer, UINTN Size, UINT8 Value)
         *(pt++) = Value;
     }
 }
+
 
 void CopyMem (void *Dest, const void *Src, UINTN len)
 {

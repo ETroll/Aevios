@@ -9,8 +9,9 @@ DIR_OBJECT = obj/
 TARGET = BOOTX64.EFI #defined name standard in EFI
 BUILDFOLDERS = . util graphics
 
-LDFLAGS = -target x86_64-win32-coff -g -Os -ffreestanding -disable-simplify-libcalls -nostdlib -dll -W -Wall -Wl,-entry:efi_main -Wl,-subsystem:efi_application -fuse-ld=lld-link -Wno-msvc-not-found 
-CFLAGS = -target x86_64-win32-coff -g -Os -ffreestanding -nostdlib -nodefaultlibs -W -Wall -fno-stack-protector -fshort-wchar -mno-red-zone -Wall -Wno-incompatible-library-redeclaration -DHAVE_USE_MS_ABI -D__GNUC__
+#You can use DWARF with COFF. To make clang-cl to emit DWARF debug info, add `-gdwarf` to clang-cl command line.
+CFLAGS = -target x86_64-win32-coff -g -gdwarf -ffreestanding -fno-builtin -nostdinc -W -Wall -fno-stack-protector -fshort-wchar -mno-red-zone -Wall -Wno-macro-redefined -Wno-incompatible-library-redeclaration #-DHAVE_USE_MS_ABI  #-D__GNUC__
+LDFLAGS = -target x86_64-win32-coff -g -gdwarf -ffreestanding -fno-builtin -nostdlib -disable-simplify-libcalls -dll -W -Wall -Wl,-entry:efi_main -Wl,-subsystem:efi_application -fuse-ld=lld -Wno-msvc-not-found 
 
 EFIINC = efi
 EFIINCS = -I$(EFIINC) -I$(EFIINC)/x86_64 -I$(EFIINC)/protocol
@@ -23,7 +24,7 @@ OBJECTS := $(patsubst %.c, $(DIR_OBJECT)%.o, $(SRC))
 all: clean $(TARGET)
 
 $(TARGET): $(DIR_BUILD) $(OBJECTS)
-	$(LINKER) $(LDFLAGS) $(OBJECTS) -v -o $(DIR_BUILD)$(TARGET)
+	$(LINKER) $(LDFLAGS) $(OBJECTS) -o $(DIR_BUILD)$(TARGET)
 
 $(OBJECTS): $(DIR_OBJECT)
 	@mkdir -p $(@D)

@@ -7,7 +7,7 @@
 #ifndef __EFI_H
 #define __EFI_H
 
-#include <stdint.h>
+#include "../include/stdint.h"
 
 #ifndef CONST
    #define CONST const

@@ -1,6 +1,6 @@
 {
     "name": "ÆviOS",
-    "image": "cr.trollcode.no/aeviosdev:4.0",
+    "image": "etroll/aeviosdev:5.0",
     "extensions": [
 		"ms-vscode.cpptools",
 		"vadimcn.vscode-lldb",

@@ -3,6 +3,7 @@
 #define PRINT_STRING_LEN            200
 #define PRINT_ITEM_BUFFER_LEN       100
 
+int _fltused;
 
 #define EFI_BLACK   0x00
 #define EFI_BLUE    0x01

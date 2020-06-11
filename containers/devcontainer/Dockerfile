@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 #TræviOS Image
 
@@ -16,27 +16,27 @@ RUN apt-get update \
     #Install Tools to build qemu
     && apt-get -y install wget g++ zlib1g-dev pkg-config libglib2.0-dev \
         binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev \
-        libpython-dev libgtk-3-dev libsdl2-dev \
+        libpython2-dev libgtk-3-dev libsdl2-dev gettext \
     # Download QEMU
     && cd /tmp/ \
-    && wget https://download.qemu.org/qemu-4.0.0.tar.xz \
-    && tar -xf qemu-4.0.0.tar.xz \
-    && cd qemu-4.0.0 \
+    && wget https://download.qemu.org/qemu-5.0.0.tar.xz \
+    && tar -xf qemu-5.0.0.tar.xz \
+    && cd qemu-5.0.0 \
     # Build QEMU
     && ./configure --enable-sdl \
     && make \
     && make install \
     # Clean up
     && cd .. \
-    && rm -rf qemu-4.0.0 \
+    && rm -rf qemu-5.0.0 \
     # Install GNU-EFI
-    # && wget https://iweb.dl.sourceforge.net/project/gnu-efi/gnu-efi-3.0.12.tar.bz2 \
-    # && tar xvjf gnu-efi-3.0.12.tar.bz2 \
-    # && cd gnu-efi-3.0.12 \
-    # && make \
-    # && make install \
-    # && cd .. \
-    # && rm -rf gnu-efi-3.0.12 \
+    && wget https://iweb.dl.sourceforge.net/project/gnu-efi/gnu-efi-3.0.12.tar.bz2 \
+    && tar xvjf gnu-efi-3.0.12.tar.bz2 \
+    && cd gnu-efi-3.0.12 \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -rf gnu-efi-3.0.12 \
     # Remove old depencies
     && apt-get remove -y zlib1g-dev pkg-config libglib2.0-dev \
         binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev \
