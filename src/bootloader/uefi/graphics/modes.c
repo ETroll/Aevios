@@ -86,19 +86,19 @@ static void _draw_boxes(EFI_GRAPHICS_OUTPUT_PROTOCOL *gop, EFI_SIMPLE_TEXT_OUTPU
 
 
 
-EFI_GRAPHICS_OUTPUT_PROTOCOL* efi_graphics_getOutput(EFI_BOOT_SERVICES* bs, EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *console) 
+EFI_GRAPHICS_OUTPUT_PROTOCOL* efi_graphics_getOutputProtocol(EFI_BOOT_SERVICES* bs, EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *console) 
 {
     EFI_GRAPHICS_OUTPUT_PROTOCOL *output;
     EFI_GUID graphicsProtocolGuid = EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID;
 
     EFI_STATUS status = bs->LocateProtocol(&graphicsProtocolGuid, NULL, (void **)&output);
 
-    if(!EFI_ERROR(status)) 
+    if(!EFI_ERROR(status))
     {
         _draw_boxes(output, console, bs);
         return output;
     }
-    else 
+    else
     {
         CHAR16 tmp[100];
         efi_util_statusToString(tmp, status);

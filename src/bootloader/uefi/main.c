@@ -18,7 +18,7 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
     ST->ConOut->ClearScreen(ST->ConOut);
  
     /* Say hi */
-    Status = ST->ConOut->OutputString(ST->ConOut, L"Hello World3\n\r");
+    Status = ST->ConOut->OutputString(ST->ConOut, L"Hello World\n\r");
     if (EFI_ERROR(Status)) 
     {
         return Status;
@@ -73,10 +73,22 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
         efi_util_printf(ST->ConOut, L"%d: %lX 0x%lX 0x%lX %lu %lu\n\r", i, MemMap[i].Type, MemMap[i].PhysicalStart, MemMap[i].VirtualStart, MemMap[i].NumberOfPages, MemMap[i].Attribute);
     }
 
-    EFI_GRAPHICS_OUTPUT_PROTOCOL* gop = efi_graphics_getOutput(ST->BootServices, ST->ConOut);
-    if(gop == NULL) {
-        efi_util_printf(ST->ConOut, L"Error getting graphics output\n\r");
-    }
+    // EFI_GRAPHICS_OUTPUT_PROTOCOL* gop = efi_graphics_getOutputProtocol(ST->BootServices, ST->ConOut);
+    // if(gop == NULL) {
+    //     efi_util_printf(ST->ConOut, L"Error getting graphics output\n\r");
+    // }
+
+    ui_context* ui_ctx = efi_ui_context_new(ST);
+
+    ui_window* win1 = efi_ui_window_new(ST, ui_ctx, 10, 10, 300, 200);
+    ui_window* win2 = efi_ui_window_new(ST, ui_ctx, 100, 150, 400, 400);
+    ui_window* win3 = efi_ui_window_new(ST, ui_ctx, 200, 100, 200, 600);
+
+    efi_ui_window_paint(win1);
+    efi_ui_window_paint(win2);
+    efi_ui_window_paint(win3);
+
+    efi_ui_context_paint(ui_ctx);
 
     efi_util_readKey(ST->ConIn, &Key);
  
