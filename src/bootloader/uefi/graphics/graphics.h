@@ -33,11 +33,4 @@ void efi_ui_context_delete(EFI_SYSTEM_TABLE* ST, ui_context* ctx);
 void efi_ui_context_paint(ui_context* ctx);
 void efi_ui_context_fillRect(ui_context* context, unsigned int x, unsigned int y, unsigned int width, unsigned int height, EFI_GRAPHICS_OUTPUT_BLT_PIXEL* color);
 
-
-
-//EFI Stuff (For now, until it gets abstracted)
-
-EFI_GRAPHICS_OUTPUT_PROTOCOL* efi_graphics_getOutputProtocol(EFI_BOOT_SERVICES* bs, EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *console);
-
-
 #endif

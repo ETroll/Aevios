@@ -156,7 +156,7 @@ UINTN efi_util_sprintf (CHAR16 *Str, UINTN StrSize, const CHAR16 *fmt, ...)
     PRINT_STATE ps;
 
     ZeroMem (&ps, sizeof(ps));
-    ps.Output  = _SPrint;
+    ps.Output  = (EFI_TEXT_STRING)_SPrint;
     ps.Context = (void*)&spc;
     ps.fmt.un.pw = fmt;
     va_copy(ps.args, args);

@@ -19,7 +19,7 @@ ui_context* efi_ui_context_new(EFI_SYSTEM_TABLE* ST)
     {
         if (gop->Mode)
         {
-            for(int i = 0; i < gop->Mode->MaxMode; i++) 
+            for(UINT32 i = 0; i < gop->Mode->MaxMode; i++) 
             {
                 EFI_GRAPHICS_OUTPUT_MODE_INFORMATION *info;
                 UINTN size;
