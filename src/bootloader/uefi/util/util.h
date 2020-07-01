@@ -35,6 +35,31 @@ typedef __builtin_va_list va_list;
 #endif
 
 
+typedef struct listnode_struct 
+{  
+    void* data;
+    struct listnode_struct* prev;
+    struct listnode_struct* next;
+} util_listnode;
+
+typedef struct list_struct 
+{
+    unsigned int count;
+    util_listnode* root;
+} util_list;
+
+
+
+util_list* efi_util_list_new(EFI_SYSTEM_TABLE* ST);
+void efi_util_list_delete(EFI_SYSTEM_TABLE* ST, util_list* list);
+int efi_util_list_add(EFI_SYSTEM_TABLE* ST, util_list* list, void* data);
+void* efi_util_list_getAt(util_list* list, unsigned int index);
+
+util_listnode* efi_util_listnode_new(EFI_SYSTEM_TABLE* ST, void* data);
+void efi_util_listnode_delete(EFI_SYSTEM_TABLE* ST, util_listnode* node);
+
+
+
 // void efiprint(struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *TOP, char* str, ...);
 
 void ZeroMem (void *Buffer, UINTN Size);

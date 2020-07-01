@@ -7,8 +7,9 @@ ui_window* efi_ui_window_new(EFI_SYSTEM_TABLE* ST, ui_context* ctx, unsigned int
 
     status = ST->BootServices->AllocatePool(EfiLoaderData, sizeof(ui_window), (void**)&window);
 
-    if(EFI_ERROR(status)) {
-        return window;
+    if(EFI_ERROR(status))
+    {
+        return NULL;
     }
 
     window->x = x;
@@ -16,6 +17,8 @@ ui_window* efi_ui_window_new(EFI_SYSTEM_TABLE* ST, ui_context* ctx, unsigned int
     window->width = width;
     window->height = height;
     window->ctx = ctx;
+
+    efi_util_list_add(ST, window->ctx->items, window);
 
     return window;
 }

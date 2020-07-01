@@ -80,13 +80,9 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 
     ui_context* ui_ctx = efi_ui_context_new(ST);
 
-    ui_window* win1 = efi_ui_window_new(ST, ui_ctx, 10, 10, 300, 200);
-    ui_window* win2 = efi_ui_window_new(ST, ui_ctx, 100, 150, 400, 400);
-    ui_window* win3 = efi_ui_window_new(ST, ui_ctx, 200, 100, 200, 600);
-
-    efi_ui_window_paint(win1);
-    efi_ui_window_paint(win2);
-    efi_ui_window_paint(win3);
+    efi_ui_window_new(ST, ui_ctx, 10, 10, 300, 200);
+    efi_ui_window_new(ST, ui_ctx, 100, 150, 400, 400);
+    efi_ui_window_new(ST, ui_ctx, 200, 100, 200, 600);
 
     efi_ui_context_paint(ui_ctx);
 

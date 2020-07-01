@@ -9,6 +9,7 @@
 typedef struct ui_ontext_struct
 {
     EFI_GRAPHICS_OUTPUT_PROTOCOL* gop;
+    util_list* items;
     uint32_t* framebuffer;
     unsigned int width;
     unsigned int height; 

@@ -11,6 +11,8 @@ ui_context* efi_ui_context_new(EFI_SYSTEM_TABLE* ST)
         return NULL;
     }
 
+    ctx->items = efi_util_list_new(ST);
+
     EFI_GRAPHICS_OUTPUT_PROTOCOL *gop;
     EFI_GUID graphicsProtocolGuid = EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID;
 
@@ -69,12 +71,17 @@ ui_context* efi_ui_context_new(EFI_SYSTEM_TABLE* ST)
     }
 
     //We failed. Let us free what resources we have allocated
+    
     efi_ui_context_delete(ST, ctx);
     return NULL;
 }
 
 void efi_ui_context_delete(EFI_SYSTEM_TABLE* ST, ui_context* ctx)
 {
+    if(ctx->items)
+    {
+        efi_util_list_delete(ST, ctx->items);
+    }
     if(ctx->framebuffer)
     {
         ST->BootServices->FreePool(ctx->framebuffer);
@@ -84,6 +91,20 @@ void efi_ui_context_delete(EFI_SYSTEM_TABLE* ST, ui_context* ctx)
 
 void efi_ui_context_paint(ui_context* ctx)
 {
+    //B - G - R
+    EFI_GRAPHICS_OUTPUT_BLT_PIXEL bgcolor = {255, 178, 102, 0};
+    efi_ui_context_fillRect(ctx, 0, 0, ctx->width, ctx->height, &bgcolor);
+
+    for(unsigned int i = 0; i< ctx->items->count; i++)
+    {
+        ui_window* window = (ui_window*)efi_util_list_getAt(ctx->items, i);
+        
+        if(window != NULL)
+        {
+            efi_ui_window_paint(window);
+        }
+    }
+
     ctx->gop->Blt(
         ctx->gop,
         (EFI_GRAPHICS_OUTPUT_BLT_PIXEL *)ctx->framebuffer,
