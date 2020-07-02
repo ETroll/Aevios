@@ -13,6 +13,25 @@
 // static int32_t _fltused = 0;
 
 
+#define EFI_DP_TYPE_MASK                    0x7F
+#define EFI_DP_TYPE_UNPACKED                0x80
+
+#define END_DEVICE_PATH_TYPE                0x7f
+
+#define END_ENTIRE_DEVICE_PATH_SUBTYPE      0xff
+#define END_INSTANCE_DEVICE_PATH_SUBTYPE    0x01
+#define END_DEVICE_PATH_LENGTH              (sizeof(EFI_DEVICE_PATH_PROTOCOL))
+
+#define DevicePathType(a)           ( ((a)->Type) & EFI_DP_TYPE_MASK )
+#define DevicePathSubType(a)        ( (a)->SubType )
+#define DevicePathNodeLength(a)     ( ((a)->Length[0]) | ((a)->Length[1] << 8) )
+#define NextDevicePathNode(a)       ( (EFI_DEVICE_PATH_PROTOCOL *) ( ((UINT8 *) (a)) + DevicePathNodeLength(a)))
+#define IsDevicePathEndType(a)      ( DevicePathType(a) == END_DEVICE_PATH_TYPE )
+#define IsDevicePathEndSubType(a)   ( (a)->SubType == END_ENTIRE_DEVICE_PATH_SUBTYPE )
+#define IsDevicePathEnd(a)          ( IsDevicePathEndType(a) && IsDevicePathEndSubType(a) )
+#define IsDevicePathUnpacked(a)     ( (a)->Type & EFI_DP_TYPE_UNPACKED )
+
+
 typedef __builtin_va_list va_list;
 
 #define va_start(v,l)	__builtin_va_start(v,l)
@@ -92,5 +111,9 @@ UINTN efi_util_printf (struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *TOP, CONST CHAR16
 UINTN efi_util_sprintf (CHAR16 *Str, UINTN StrSize, const CHAR16 *fmt, ...);
 
 EFI_STATUS efi_util_readKey(EFI_SIMPLE_TEXT_INPUT_PROTOCOL *console, EFI_INPUT_KEY *key);
+
+EFI_STATUS efi_util_connectAllHandles(EFI_SYSTEM_TABLE* ST);
+EFI_STATUS efi_util_connectMinimumHandles(EFI_SYSTEM_TABLE* ST);
+
 
 #endif

@@ -21,7 +21,9 @@ qemu:
 		-drive if=pflash,format=raw,unit=0,file=$(OMVF)/OVMF_CODE-pure-efi.fd,readonly=on \
 		-drive if=pflash,format=raw,unit=1,file=$(OMVF)/OVMF_VARS-pure-efi.fd \
 		-usb -drive if=none,id=stick,format=raw,file=$(IMAGE) -device nec-usb-xhci,id=xhci \
-		-device usb-storage,bus=xhci.0,drive=stick -net none -m 256 -d cpu_reset
+		-device usb-storage,bus=xhci.0,drive=stick \
+		-device usb-mouse -device usb-kbd -show-cursor \
+		-net none -m 256 -d cpu_reset
 		#-debugcon file:efi-debug.log -global isa-debugcon.iobase=0x402 
 		#-serial stdio \
 		#-nographic
@@ -31,7 +33,9 @@ debug: $(BOOTLOADER)
 		-drive if=pflash,format=raw,unit=0,file=$(OMVF)/OVMF_CODE-pure-efi.fd,readonly=on \
 		-drive if=pflash,format=raw,unit=1,file=$(OMVF)/OVMF_VARS-pure-efi.fd \
 		-usb -drive if=none,id=stick,format=raw,file=$(IMAGE) -device nec-usb-xhci,id=xhci \
-		-device usb-storage,bus=xhci.0,drive=stick -net none -m 256 -d cpu_reset -s -S 
+		-device usb-storage,bus=xhci.0,drive=stick \
+		-device usb-kbd -device usb-mouse -show-cursor\
+		-net none -m 256 -d cpu_reset -s -S 
 		#-debugcon file:efi-debug.log -global isa-debugcon.iobase=0x402 
 		#-serial stdio \
 		#-nographic
@@ -43,7 +47,9 @@ $(IMAGE): $(DESTINATION)
 	# mformat -i $@ -F ::
 	mmd -i $@ ::/EFI
 	mmd -i $@ ::/EFI/BOOT
-	mcopy -i $@ ./toolchain/tros.elf :: 
+	mmd -i $@ ::/EFI/DRIVERS
+	mcopy -D o -i $@ ./toolchain/efi-drivers/UsbMouseDxe-64.efi ::/EFI/DRIVERS 
+	#mcopy -D o -i ./toolchain/tros.elf :: /
 
 $(KERNEL):
 	$(MAKE) -C ./$(SOURCE)/$@
